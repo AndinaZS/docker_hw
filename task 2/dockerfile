@@ -1,0 +1,15 @@
+FROM python:3.9-alpine
+
+ENV PYTHONUNBUFFERED=1
+
+WORKDIR prj
+
+COPY . /prj
+
+RUN pip install -r requirements.txt
+
+RUN python manage.py migrate
+
+EXPOSE 5060
+
+CMD python manage.py runserver 0.0.0.0:5060
